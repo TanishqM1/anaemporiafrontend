@@ -1,11 +1,13 @@
 import { type Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import "../styles/globals.css";
-import LayoutWrapper from "../componenets/LayoutWrapper";
+import Navbar from "@/componenets/navbar";
+import Footer from "@/componenets/Footer";
 
 export const metadata: Metadata = {
   title: "Anaemporia — Mock Trading, Real Insights",
-  description: "Simulate trading, explore AI-powered strategies, and master the markets.",
+  description:
+    "Simulate trading, explore AI-powered strategies, and master the markets.",
 };
 
 export default function RootLayout({
@@ -15,9 +17,16 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en" className="h-full">
-        <body className="bg-black text-white min-h-screen flex flex-col font-serif h-full">
-          <LayoutWrapper>{children}</LayoutWrapper>
+      <html lang="en">
+        <body className="flex flex-col min-h-screen bg-gradient-to-tr from-black via-gray-900 to-purple-800 text-white">
+          {/* NAVIGATION */}
+          <Navbar/>
+
+          {/* Main content grows to fill space */}
+          <main className="flex-grow pt-15">{children}</main>
+
+          {/* Footer stays at the bottom */}
+          <Footer/>
         </body>
       </html>
     </ClerkProvider>

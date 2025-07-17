@@ -1,31 +1,64 @@
 "use client";
 
-import { UserButton, useUser } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
 
 export default function DashboardPage() {
   const { user } = useUser();
 
   return (
-    <main className="flex flex-col items-center justify-start px-4 py-12 text-center min-h-screen">
-      <h1 className="text-4xl sm:text-5xl font-bold mb-8 font-serif">
-        Welcome back, {user?.firstName || "Trader"}! 
-        {/* replace with SQL First Name later. */}
+    <main className="bg-gradient-to-tr from-black via-gray-900 to-purple-800 text-white flex flex-col items-center justify-center text-center px-4 min-h-screen">
+      <h1 className="text-4xl sm:text-5xl font-bold m-12 font-serif drop-shadow-lg">
+        Welcome back, {user?.firstName || "[Name]"}!
       </h1>
 
+      <div className="flex flex-col sm:flex-row gap-6 w-full max-w-8xl px-44">
+        {/* Larger card for lifetime graph */}
+        <div className="flex-1 rounded-2xl bg-white/30 backdrop-blur-md p-6 border border-black/60 h-[700px] shadow-xl">
+          <h2 className="text-xl font-semibold mb-2 text-white">
+            Lifetime Performance
+          </h2>
+          <p className="text-gray-200 text-sm">
+            Graph showing your total value, selected portfolio, and timeline.
+          </p>
+        </div>
 
-      {/* Example placeholder cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full max-w-5xl mt-8">
-        <div className="rounded-xl bg-white/5 backdrop-blur p-6 border border-white/10">
-          <h2 className="text-lg font-medium mb-2">Your Portfolio</h2>
-          <p className="text-gray-400 text-sm">Monitor your current holdings and total value.</p>
+        {/* Smaller card for bought stocks list */}
+        <div className="w-full sm:w-[300px] rounded-2xl bg-white/30 backdrop-blur-md p-6 border border-black/60 h-[600px] overflow-y-auto mt-14 shadow-xl">
+          <h2 className="text-xl font-semibold mb-2 text-white">Your Stocks</h2>
+          <p className="text-gray-200 text-sm">
+            Scrollable view of stocks you've bought.
+          </p>
         </div>
-        <div className="rounded-xl bg-white/5 backdrop-blur p-6 border border-white/10">
-          <h2 className="text-lg font-medium mb-2">Market Trends</h2>
-          <p className="text-gray-400 text-sm">Check top gainers, losers, and news.</p>
+      </div>
+
+      {/* Account Cards Section - Rectangular full-width */}
+      <div className="w-full max-w-8xl mt-10 flex flex-col gap-6 px-44 text-left m-10">
+        {/* Account 1 */}
+        <div className="rounded-2xl bg-white/10 backdrop-blur-md p-6 border border-white/20 shadow-lg w-full">
+          <h3 className="text-xl font-semibold text-white mb-1">
+            Growth Portfolio
+          </h3>
+          <p className="text-gray-300 text-sm">
+            Focused on tech and emerging markets. The rest of this card should show value, net change, last modified, and percentage gain or loss.
+          </p>
         </div>
-        <div className="rounded-xl bg-white/5 backdrop-blur p-6 border border-white/10">
-          <h2 className="text-lg font-medium mb-2">AI Insights</h2>
-          <p className="text-gray-400 text-sm">Discover personalized AI strategy recommendations.</p>
+
+        {/* Account 2 */}
+        <div className="rounded-2xl bg-white/10 backdrop-blur-md p-6 border border-white/20 shadow-lg w-full">
+          <h3 className="text-xl font-semibold text-white mb-1">
+            Dividend Portfolio
+          </h3>
+          <p className="text-gray-300 text-sm">
+            Stable income from blue-chip dividends.
+          </p>
+        </div>
+
+        {/* Account 3 */}
+        <div className="rounded-2xl bg-white/10 backdrop-blur-md p-6 border border-white/20 shadow-lg w-full">
+          <h3 className="text-xl font-semibold text-white mb-1">
+            TFSA Portfolio
+          </h3>
+          <p className="text-gray-300 text-sm">Tax-free savings investments.</p>
         </div>
       </div>
 
