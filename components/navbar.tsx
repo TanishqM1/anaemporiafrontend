@@ -6,7 +6,7 @@ import { UserButton } from "@clerk/nextjs";
 export default function Navbar() {
   return (
     // <nav className="fixed top-0 left-0 w-full z-50 bg-black/70 backdrop-blur border-b border-white/10 shadow-sm">
-    <nav className="w-full px-6 py-4 flex items-center justify-between border-b border-white/10 backdrop-blur-md bg-black/50 fixed top-0 left-0 z-50">
+    <nav className="bg-linear-to-r from-zinc-500 via-stone-600 to-zinc-900 w-full px-12 py-5 flex items-center justify-between border-2 border-white/10 backdrop-blur-md bg-black/50 fixed top-0 left-0 z-50 border-b-grey shadow-xl">
       {/* Left side: Logo and nav links */}
       <div className="flex items-center gap-8">
         {/* Placeholder logo */}
