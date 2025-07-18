@@ -72,11 +72,11 @@ export default function InsightsPage() {
           <div className="space-y-8 font-semi-bold">
             <div>
               <p className="text-sm mb-2">Risk Tolerance</p>
-              <Slider defaultValue={[1]} max={10} step={1} />
+              <Slider className ="bg-white/40 rounded-xl" defaultValue={[1]} max={10} step={1} />
             </div>
             <div>
               <p className="text-sm mb-2">Time Horizon (months)</p>
-              <Slider defaultValue={[3]} max={12} step={1} />
+              <Slider className="bg-white/40 rounded-xl"defaultValue={[3]} max={12} step={1} />
             </div>
           </div>
         </div>
