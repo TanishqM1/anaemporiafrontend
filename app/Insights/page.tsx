@@ -5,7 +5,13 @@ import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { format } from "date-fns";
@@ -28,7 +34,9 @@ export default function InsightsPage() {
 
   const toggleFilter = (filter: string) => {
     setSelectedFilters((prev) =>
-      prev.includes(filter) ? prev.filter((f) => f !== filter) : [...prev, filter]
+      prev.includes(filter)
+        ? prev.filter((f) => f !== filter)
+        : [...prev, filter]
     );
   };
 
@@ -86,15 +94,37 @@ export default function InsightsPage() {
               </DialogTrigger>
               <DialogContent className="bg-zinc-800 text-white max-h-[500px] overflow-y-auto">
                 <DialogTitle className="sr-only">Select Filters</DialogTitle>
-                <h3 className="text-lg font-semibold mb-4">Avoid These Categories</h3>
+                <h3 className="text-lg font-semibold mb-4">
+                  Avoid These Categories
+                </h3>
                 <div className="grid grid-cols-2 gap-3 text-sm mb-4">
-                  {["Oil & Gas", "Cigarettes & Tobacco", "Weapons", "Mining", "Gambling", "Fast Fashion", "Airlines", "Real Estate", "Cryptocurrency", "Fossil Fuels", "Traditional Banks", "Defense"].map((item, i) => (
+                  {[
+                    "Oil & Gas",
+                    "Cigarettes & Tobacco",
+                    "Weapons",
+                    "Mining",
+                    "Gambling",
+                    "Fast Fashion",
+                    "Airlines",
+                    "Real Estate",
+                    "Cryptocurrency",
+                    "Fossil Fuels",
+                    "Traditional Banks",
+                    "Defense",
+                  ].map((item, i) => (
                     <label key={i} className="flex gap-2 items-center">
-                      <Checkbox checked={selectedFilters.includes(item)} onCheckedChange={() => toggleFilter(item)} /> {item}
+                      <Checkbox
+                        checked={selectedFilters.includes(item)}
+                        onCheckedChange={() => toggleFilter(item)}
+                      />{" "}
+                      {item}
                     </label>
                   ))}
                 </div>
-                <Button onClick={() => {}} className="mt-2 w-full bg-white/10 hover:bg-white/20">
+                <Button
+                  onClick={() => {}}
+                  className="mt-2 w-full bg-white/10 hover:bg-white/20"
+                >
                   Save Changes
                 </Button>
               </DialogContent>
@@ -114,14 +144,16 @@ export default function InsightsPage() {
 
         <div className="flex-1 rounded-2xl bg-black/40 p-6 border border-white/30 backdrop-blur-md shadow-2xl flex flex-col">
           <h2 className="text-xl font-semibold mb-2">Add Context</h2>
-          <TextareaAutosize
-            value={context}
-            onChange={(e) => setContext(e.target.value)}
-            minRows={3}
-            maxRows={12}
-            placeholder="Optional: Enter any specific goals or constraints..."
-            className="resize-none rounded-md p-2 text-sm text-white bg-white/10 border border-white/20 focus:outline-none"
-          />
+          <ScrollArea className="w-full max-h-[250px] rounded-md border border-white/10 bg-white/5 p-1">
+            <TextareaAutosize
+              value={context}
+              onChange={(e) => setContext(e.target.value)}
+              minRows={3}
+              maxRows={12}
+              placeholder="Optional: Enter any specific goals or constraints..."
+              className="w-full resize-none overflow-hidden p-2 text-sm text-white bg-transparent focus:outline-none"
+            />
+          </ScrollArea>
         </div>
       </div>
 
@@ -132,9 +164,7 @@ export default function InsightsPage() {
           {dummyInsights.map((insight) => (
             <Dialog key={insight.id}>
               <DialogTrigger asChild>
-                <div
-                  className="bg-white/10 rounded-xl px-4 py-3 min-w-[250px] hover:bg-white/20 cursor-pointer transition"
-                >
+                <div className="bg-white/10 rounded-xl px-4 py-3 min-w-[250px] hover:bg-white/20 cursor-pointer transition">
                   <p className="font-semibold mb-1">Insight {insight.id}</p>
                   <p className="text-xs text-gray-300">
                     {format(insight.date, "MMM d, yyyy, h:mm a")}
@@ -153,7 +183,9 @@ export default function InsightsPage() {
                   <strong>Context:</strong> {insight.context}
                 </p>
                 <p className="text-sm mb-2">
-                  <strong>Hyperparameters:</strong> Risk {insight.hyperparams.risk}, Horizon {insight.hyperparams.horizon} days
+                  <strong>Hyperparameters:</strong> Risk{" "}
+                  {insight.hyperparams.risk}, Horizon{" "}
+                  {insight.hyperparams.horizon} days
                 </p>
                 <p className="text-sm mt-4">
                   <strong>Response:</strong> {insight.response}
