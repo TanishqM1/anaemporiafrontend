@@ -6,8 +6,8 @@ export default function AccountPage() {
   const { user } = useUser();
 
   return (
-    <main className="bg-linear-to-r from-zinc-500 via-stone-600 to-zinc-900 text-white flex flex-col items-center px-4 pb-16 min-h-screen">
-      <h1 className="text-4xl sm:text-5xl font-bold m-12 font-serif drop-shadow-lg text-center">
+    <main className="bg-linear-to-r from-zinc-500 via-stone-600 to-zinc-900 text-white flex flex-col items-center px-4 pb-16 min-h-screen pt-24">
+      <h1 className="text-4xl sm:text-5xl font-bold mb-12 font-serif drop-shadow-lg text-center">
         Your Account
       </h1>
 
