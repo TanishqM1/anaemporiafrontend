@@ -1,8 +1,8 @@
 import { type Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import "../styles/globals.css";
-import Navbar from "@/componenets/navbar";
-import Footer from "@/componenets/Footer";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/Footer"
 
 export const metadata: Metadata = {
   title: "Anaemporia — Mock Trading, Real Insights",
@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className="flex flex-col min-h-screen bg-gradient-to-tr from-black via-gray-900 to-purple-800 text-white">
+        <body className="flex flex-col min-h-screen bg-linear-to-r from-zinc-500 via-stone-600 to-zinc-900 text-white">
           {/* NAVIGATION */}
           <Navbar/>
 

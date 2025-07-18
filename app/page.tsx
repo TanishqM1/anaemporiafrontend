@@ -10,7 +10,7 @@ import {
 
 export default function HomePage() {
   return (
-    <main className="bg-gradient-to-tr from-black via-gray-900 to-purple-800 text-white flex flex-1 flex-col items-center justify-center text-center px-4 min-h-screen">
+    <main className="bg-linear-to-r from-zinc-500 via-stone-600 to-zinc-900 text-white flex flex-1 flex-col items-center justify-center text-center px-4 min-h-screen">
       <SignedOut>
         <h1 className="text-5xl sm:text-6xl font-bold mb-4 tracking-tight font-serif">
           Welcome to Anaemporia
