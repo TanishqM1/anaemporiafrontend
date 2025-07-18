@@ -49,8 +49,8 @@ export default function TradePage() {
   const router = useRouter();
 
   return (
-    <main className="pt-16 px-48 pb-20 min-h-screen text-white bg-linear-to-r from-zinc-500 via-stone-600 to-zinc-900 space-y-10">
-      <h1 className="text-4xl sm:text-5xl font-bold m-12 font-serif drop-shadow-lg text-center">
+    <main className="pt-16 px-48 pb-20 min-h-screen text-white bg-linear-to-r from-zinc-500 via-stone-600 to-zinc-900 space-y-10 pt-24">
+      <h1 className="text-4xl sm:text-5xl font-bold mb-12 font-serif drop-shadow-lg text-center">
         Trade Center
       </h1>
 

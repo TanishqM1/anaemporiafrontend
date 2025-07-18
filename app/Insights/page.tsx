@@ -51,7 +51,7 @@ export default function InsightsPage() {
   ];
 
   return (
-    <main className="bg-linear-to-r from-zinc-500 via-stone-600 to-zinc-900 text-white flex flex-col items-center px-6 pb-20 pt-32 min-h-screen">
+    <main className="bg-linear-to-r from-zinc-500 via-stone-600 to-zinc-900 text-white flex flex-col items-center px-6 pb-20 pt-24 min-h-screen">
       <div className="w-full max-w-7xl flex justify-center items-center mb-8">
         <h1 className="text-4xl sm:text-5xl font-bold font-serif drop-shadow-lg mr-110">
           Investment Insights
