@@ -3,7 +3,6 @@
 import { useUser } from "@clerk/nextjs";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
@@ -70,13 +69,13 @@ export default function InsightsPage() {
         {/* Hyperparameters */}
         <div className="flex-1 rounded-2xl bg-black/40 p-6 border border-white/30 backdrop-blur-md shadow-2xl">
           <h2 className="text-xl font-semibold mb-6">Hyperparameters</h2>
-          <div className="space-y-8">
+          <div className="space-y-8 font-semi-bold">
             <div>
-              <p className="text-sm mb-1">Risk Tolerance</p>
+              <p className="text-sm mb-2">Risk Tolerance</p>
               <Slider defaultValue={[1]} max={10} step={1} />
             </div>
             <div>
-              <p className="text-sm mb-1">Time Horizon (months)</p>
+              <p className="text-sm mb-2">Time Horizon (months)</p>
               <Slider defaultValue={[3]} max={12} step={1} />
             </div>
           </div>
@@ -121,12 +120,14 @@ export default function InsightsPage() {
                     </label>
                   ))}
                 </div>
+                <DialogTrigger asChild>
                 <Button
                   onClick={() => {}}
                   className="mt-2 w-full bg-white/10 hover:bg-white/20"
                 >
                   Save Changes
                 </Button>
+                </DialogTrigger>
               </DialogContent>
             </Dialog>
           </div>
