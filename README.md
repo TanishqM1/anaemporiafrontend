@@ -13,7 +13,7 @@ Anaemporia is a full-stack mock stock trading platform designed to help users si
 ## Tech Stack
 
 - **Frontend:** Next.js, Tailwind CSS
-- **Backend:** Django (planned)
+- **Backend:** Django (planned)«
 - **Authentication:** Clerk
 - **Database:** PostgreSQL
 - **Hosting:** Vercel, AWS
