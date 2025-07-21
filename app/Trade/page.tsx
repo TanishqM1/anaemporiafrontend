@@ -19,7 +19,6 @@ const topGainers = [
   { symbol: "NVDA", change: "+8.23%" },
   { symbol: "META", change: "+7.12%" },
   { symbol: "AMZN", change: "+6.85%" },
-
 ];
 
 const topLosers = [
@@ -33,7 +32,6 @@ const topLosers = [
   { symbol: "BABA", change: "-4.98%" },
   { symbol: "NIO", change: "-4.50%" },
   { symbol: "NIO", change: "-4.50%" },
-
 ];
 
 const newsHeadlines = [
@@ -56,7 +54,7 @@ export default function TradePage() {
 
       {/* Top 25 Stocks List */}
       <div className="rounded-2xl bg-black/40 border border-white/20 p-6 shadow-xl backdrop-blur-md">
-        <h2 className="text-2xl font-semibold mb-4">Top 25 Stocks</h2>
+        <h2 className="text-2xl font-semibold mb-5">Top 25 Stocks</h2>
         <ScrollArea className="h-[485px] pr-4">
           <ul className="space-y-3 text-md">
             {top25Stocks.map((stock, i) => (
@@ -65,8 +63,16 @@ export default function TradePage() {
                 onClick={() => router.push(`/Stock/${stock.symbol}`)}
                 className="flex justify-between items-center bg-white/5 hover:bg-white/10 transition p-3 rounded-xl cursor-pointer"
               >
-                <span className="font-medium">{i + 1}. {stock.symbol}</span>
-                <span className="text-gray-300">{stock.name}</span>
+                {/* Left side: index, symbol (bold), and name with minimal gap */}
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-gray-300">{i + 1}.</span>
+                  <span className="font-bold">{stock.name}</span>
+                  <span className="text-gray-300 text-sm">({stock.symbol})</span>
+                  {/* placeholder to add extra information later. */}
+                  {/* <span className="text-gray-300 text-sm"></span>  */}
+                </div>
+
+                {/* Right side: price */}
                 <span className="font-bold">${stock.price}</span>
               </li>
             ))}
@@ -76,43 +82,49 @@ export default function TradePage() {
 
       {/* Gainers and Losers */}
       <div className="grid md:grid-cols-2 gap-6">
+        <div className="rounded-2xl bg-black/40 border border-white/20 p-6 shadow-xl backdrop-blur-md">
+          <h2 className="text-2xl font-semibold mb-4 text-green-400">
+            Top Gainers
+          </h2>
+          <ScrollArea className="h-[250px] pr-4">
+            <ul className="space-y-3 text-md text-green-400">
+              {topGainers.map((stock, i) => (
+                <li
+                  key={stock.symbol}
+                  onClick={() => router.push(`/Stock/${stock.symbol}`)}
+                  className="flex justify-between items-center bg-white/5 hover:bg-white/10 transition p-3 rounded-xl cursor-pointer"
+                >
+                  <span className="font-medium">
+                    {i + 1}. {stock.symbol}
+                  </span>
+                  <span className="font-bold">{stock.change}</span>
+                </li>
+              ))}
+            </ul>
+          </ScrollArea>
+        </div>
 
-      <div className="rounded-2xl bg-black/40 border border-white/20 p-6 shadow-xl backdrop-blur-md">
-        <h2 className="text-2xl font-semibold mb-4 text-green-400">Top Gainers</h2>
-        <ScrollArea className="h-[250px] pr-4">
-          <ul className="space-y-3 text-md text-green-400">
-            {topGainers.map((stock, i) => (
-              <li
-                key={stock.symbol}
-                onClick={() => router.push(`/Stock/${stock.symbol}`)}
-                className="flex justify-between items-center bg-white/5 hover:bg-white/10 transition p-3 rounded-xl cursor-pointer"
-              >
-                <span className="font-medium">{i + 1}. {stock.symbol}</span>
-                <span className="font-bold">{stock.change}</span>
-              </li>
-            ))}
-          </ul>
-        </ScrollArea>
-      </div>
-
-      <div className="rounded-2xl bg-black/40 border border-white/20 p-6 shadow-xl backdrop-blur-md">
-        <h2 className="text-2xl font-semibold mb-4 text-red-400">Top Losers</h2>
-        <ScrollArea className="h-[250px] pr-4">
-          <ul className="space-y-3 text-md text-red-400">
-            {topLosers.map((stock, i) => (
-              <li
-                key={stock.symbol}
-                onClick={() => router.push(`/Stock/${stock.symbol}`)}
-                className="flex justify-between items-center bg-white/5 hover:bg-white/10 transition p-3 rounded-xl cursor-pointer"
-              >
-                <span className="font-medium">{i + 1}. {stock.symbol}</span>
-                <span className="font-bold">{stock.change}</span>
-              </li>
-            ))}
-          </ul>
-        </ScrollArea>
-      </div>
-
+        <div className="rounded-2xl bg-black/40 border border-white/20 p-6 shadow-xl backdrop-blur-md">
+          <h2 className="text-2xl font-semibold mb-4 text-red-400">
+            Top Losers
+          </h2>
+          <ScrollArea className="h-[250px] pr-4">
+            <ul className="space-y-3 text-md text-red-400">
+              {topLosers.map((stock, i) => (
+                <li
+                  key={stock.symbol}
+                  onClick={() => router.push(`/Stock/${stock.symbol}`)}
+                  className="flex justify-between items-center bg-white/5 hover:bg-white/10 transition p-3 rounded-xl cursor-pointer"
+                >
+                  <span className="font-medium">
+                    {i + 1}. {stock.symbol}
+                  </span>
+                  <span className="font-bold">{stock.change}</span>
+                </li>
+              ))}
+            </ul>
+          </ScrollArea>
+        </div>
       </div>
 
       {/* News Headlines */}
@@ -121,7 +133,10 @@ export default function TradePage() {
         <ScrollArea className="h-[285px] pr-4">
           <ul className="space-y-3 text-md">
             {newsHeadlines.map((headline, i) => (
-              <li key={i} className="flex justify-between items-center bg-white/5 hover:bg-white/10 transition p-3 rounded-xl cursor-pointer font-bold">
+              <li
+                key={i}
+                className="flex justify-between items-center bg-white/5 hover:bg-white/10 transition p-3 rounded-xl cursor-pointer font-bold"
+              >
                 {headline}
               </li>
             ))}
@@ -132,18 +147,18 @@ export default function TradePage() {
   );
 }
 
-        // <ScrollArea className="h-[485px] pr-4">
-        //   <ul className="space-y-3 text-md">
-        //     {top25Stocks.map((stock, i) => (
-        //       <li
-        //         key={stock.symbol}
-        //         onClick={() => router.push(`/Stock/${stock.symbol}`)}
-        //         className="flex justify-between items-center bg-white/5 hover:bg-white/10 transition p-3 rounded-xl cursor-pointer"
-        //       >
-        //         <span className="font-medium">{i + 1}. {stock.symbol}</span>
-        //         <span className="text-gray-300">{stock.name}</span>
-        //         <span className="font-bold">${stock.price}</span>
-        //       </li>
-        //     ))}
-        //   </ul>
-        // </ScrollArea>
+// <ScrollArea className="h-[485px] pr-4">
+//   <ul className="space-y-3 text-md">
+//     {top25Stocks.map((stock, i) => (
+//       <li
+//         key={stock.symbol}
+//         onClick={() => router.push(`/Stock/${stock.symbol}`)}
+//         className="flex justify-between items-center bg-white/5 hover:bg-white/10 transition p-3 rounded-xl cursor-pointer"
+//       >
+//         <span className="font-medium">{i + 1}. {stock.symbol}</span>
+//         <span className="text-gray-300">{stock.name}</span>
+//         <span className="font-bold">${stock.price}</span>
+//       </li>
+//     ))}
+//   </ul>
+// </ScrollArea>
