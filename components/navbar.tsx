@@ -43,9 +43,9 @@ export default function Navbar() {
       <div className="flex items-center gap-8">
         {/* Placeholder logo */}
         <Link href="/Homepage">
-          <span className="text-xl font-bold tracking-tight">Anaemporia</span>
+          <span className="text-2xl font-bold tracking-tight">Anaemporia</span>
         </Link>
-        <div className="hidden sm:flex items-center gap-6 text-sm font-bold">
+        <div className="hidden sm:flex items-center gap-6 text-lg font-bold">
           <Link href="/Homepage" className="hover:text-gray-300 transition">
             Home
           </Link>
@@ -72,7 +72,7 @@ export default function Navbar() {
         <input
           type="text"
           placeholder="Search stocks..."
-          className="hidden sm:block rounded-full bg-white/10 backdrop-blur-sm px-4 py-1 text-sm placeholder-white focus:outline-none focus:ring-2 focus:ring-purple-700 transition"
+          className="hidden sm:block w-64 sm:w-96 rounded-full bg-black/40 backdrop-blur border-2 border-transparent bg-clip-padding text-white placeholder-white px-6 py-2 text-sm focus:outline-none"
         />
 
         {/* Clerk user button */}
