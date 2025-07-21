@@ -2,6 +2,38 @@
 
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
+import { toZonedTime } from "date-fns-tz";
+
+function MarketStatus() {
+  const now: Date = new Date();
+  const time = toZonedTime(now, "America/New_York");
+
+  const day = time.getDay();
+  const hours = time.getHours();
+  const mins = time.getMinutes();
+
+  const isWeekday = day >= 1 && day <= 5;
+  const isOpen = (hours > 9 || (hours == 9 && mins >= 30)) && hours < 16;
+
+  const status = isWeekday && isOpen;
+
+  // The market is open if it is 1) a weekday, 2) between 9:30 and 4:00 PM
+  if (status) {
+    return (
+      <div
+        className="h-3 w-3 rounded-full bg-green-500"
+        title="Market Open"
+      ></div>
+    );
+  } else {
+    return (
+      <div
+        className="h-3 w-3 rounded-full bg-red-500"
+        title="Market Closed"
+      ></div>
+    );
+  }
+}
 
 export default function Navbar() {
   return (
@@ -14,17 +46,27 @@ export default function Navbar() {
           <span className="text-xl font-bold tracking-tight">Anaemporia</span>
         </Link>
         <div className="hidden sm:flex items-center gap-6 text-sm font-bold">
-          <Link href="/Homepage" className="hover:text-gray-300 transition">Home</Link>
-          <Link href="/Account" className="hover:text-gray-300 transition">Account</Link>
-          <Link href="/Trade" className="hover:text-gray-300 transition">Trade</Link>
-          <Link href="/Insights" className="hover:text-gray-300 transition">Insights</Link>
+          <Link href="/Homepage" className="hover:text-gray-300 transition">
+            Home
+          </Link>
+          <Link href="/Account" className="hover:text-gray-300 transition">
+            Account
+          </Link>
+          <Link href="/Trade" className="hover:text-gray-300 transition">
+            Trade
+          </Link>
+          <Link href="/Insights" className="hover:text-gray-300 transition">
+            Insights
+          </Link>
         </div>
       </div>
 
       {/* Right side: Search, status, user */}
       <div className="flex items-center gap-4">
         {/* Placeholder status indicator */}
-        <div className="h-3 w-3 rounded-full bg-green-500" title="Market Open"></div>
+        <div>
+          <MarketStatus />
+        </div>
 
         {/* Search bar placeholder */}
         <input
