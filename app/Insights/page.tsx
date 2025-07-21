@@ -139,7 +139,7 @@ export default function InsightsPage() {
         <div className="flex-[3] rounded-2xl bg-black/40 p-6 border border-white/30 backdrop-blur-md shadow-2xl h-[400px] overflow-y-auto">
           <h2 className="text-xl font-semibold mb-4">AI-Powered Insights</h2>
           <p className="text-sm text-gray-300">
-            (Personalized GPT response will go here.)
+            (run insights to capture responses)
           </p>
         </div>
 
