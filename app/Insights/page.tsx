@@ -27,6 +27,9 @@ type Insight = {
 export default function InsightsPage() {
   const { user } = useUser();
 
+  const [risk, setRisk] = useState<number[]>([1]);
+  const [horizon, setHorizon] = useState<number[]>([3]);
+
   const [context, setContext] = useState("");
   const [selectedInsight, setSelectedInsight] = useState<Insight | null>(null);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
@@ -71,19 +74,27 @@ export default function InsightsPage() {
           <h2 className="text-xl font-semibold mb-6">Hyperparameters</h2>
           <div className="space-y-8 font-semi-bold">
             <div>
-              <p className="text-sm mb-2">Risk Tolerance</p>
+              <div className="flex justify-between mb-2 mr-2">
+                <p className="text-sm">Risk Tolerance</p>
+                <p className="text-sm font-medium">{risk[0]}</p>
+              </div>
               <Slider
                 className="bg-white/40 rounded-xl"
-                defaultValue={[1]}
+                value={risk}
+                onValueChange={setRisk}
                 max={10}
                 step={1}
               />
             </div>
             <div>
-              <p className="text-sm mb-2">Time Horizon (months)</p>
+              <div className="flex justify-between mb-2 mr-2">
+                <p className="text-sm flex flex-row">Time Horizon <div className="text-sm text-gray-300 ml-1"><p>(months)</p></div></p>
+                <p className="text-sm font-medium">{horizon[0]}</p>
+              </div>
               <Slider
                 className="bg-white/40 rounded-xl"
-                defaultValue={[3]}
+                value={horizon}
+                onValueChange={setHorizon}
                 max={12}
                 step={1}
               />
@@ -142,29 +153,28 @@ export default function InsightsPage() {
             </Dialog>
           </div>
           {selectedFilters.length > 0 ? (
-  <div className="mt-4 text-sm text-white flex flex-wrap gap-2 max-w-full overflow-hidden">
-    {selectedFilters.slice(0, 4).map((filter, i) => (
-      <span
-        key={i}
-        className="inline-block bg-white/10 border border-white/20 px-3 py-1 rounded-full"
-      >
-        {filter}
-      </span>
-    ))}
+            <div className="mt-4 text-sm text-white flex flex-wrap gap-2 max-w-full overflow-hidden">
+              {selectedFilters.slice(0, 4).map((filter, i) => (
+                <span
+                  key={i}
+                  className="inline-block bg-white/10 border border-white/20 px-3 py-1 rounded-full"
+                >
+                  {filter}
+                </span>
+              ))}
 
-    {selectedFilters.length > 4 && (
-      <span
-        className="inline-block bg-white/10 border border-white/20 px-3 py-1 rounded-full"
-        title={selectedFilters.slice(3).join(", ")}
-      >
-        +{selectedFilters.length - 4}
-      </span>
-    )}
-  </div>
-) : (
-  <p className="mt-4 text-sm text-gray-400">No filters selected</p>
-)}
-
+              {selectedFilters.length > 4 && (
+                <span
+                  className="inline-block bg-white/10 border border-white/20 px-3 py-1 rounded-full"
+                  title={selectedFilters.slice(3).join(", ")}
+                >
+                  +{selectedFilters.length - 4}
+                </span>
+              )}
+            </div>
+          ) : (
+            <p className="mt-4 text-sm text-gray-400">No filters selected</p>
+          )}
         </div>
       </div>
 
