@@ -67,16 +67,26 @@ export default function InsightsPage() {
       {/* Controls */}
       <div className="w-full max-w-7xl flex flex-col lg:flex-row gap-6 mb-10">
         {/* Hyperparameters */}
-        <div className="flex-1 rounded-2xl bg-black/40 p-6 border border-white/30 backdrop-blur-md shadow-2xl">
+        <div className="flex-[3] rounded-2xl bg-black/40 p-6 border border-white/30 backdrop-blur-md shadow-2xl">
           <h2 className="text-xl font-semibold mb-6">Hyperparameters</h2>
           <div className="space-y-8 font-semi-bold">
             <div>
               <p className="text-sm mb-2">Risk Tolerance</p>
-              <Slider className ="bg-white/40 rounded-xl" defaultValue={[1]} max={10} step={1} />
+              <Slider
+                className="bg-white/40 rounded-xl"
+                defaultValue={[1]}
+                max={10}
+                step={1}
+              />
             </div>
             <div>
               <p className="text-sm mb-2">Time Horizon (months)</p>
-              <Slider className="bg-white/40 rounded-xl"defaultValue={[3]} max={12} step={1} />
+              <Slider
+                className="bg-white/40 rounded-xl"
+                defaultValue={[3]}
+                max={12}
+                step={1}
+              />
             </div>
           </div>
         </div>
@@ -99,7 +109,7 @@ export default function InsightsPage() {
                 <div className="grid grid-cols-2 gap-3 text-sm mb-4">
                   {[
                     "Oil & Gas",
-                    "Cigarettes & Tobacco",
+                    "Tobacco",
                     "Weapons",
                     "Mining",
                     "Gambling",
@@ -121,16 +131,40 @@ export default function InsightsPage() {
                   ))}
                 </div>
                 <DialogTrigger asChild>
-                <Button
-                  onClick={() => {}}
-                  className="mt-2 w-full bg-white/10 hover:bg-white/20"
-                >
-                  Save Changes
-                </Button>
+                  <Button
+                    onClick={() => {}}
+                    className="mt-2 w-full bg-white/10 hover:bg-white/20"
+                  >
+                    Save Changes
+                  </Button>
                 </DialogTrigger>
               </DialogContent>
             </Dialog>
           </div>
+          {selectedFilters.length > 0 ? (
+  <div className="mt-4 text-sm text-white flex flex-wrap gap-2 max-w-full overflow-hidden">
+    {selectedFilters.slice(0, 4).map((filter, i) => (
+      <span
+        key={i}
+        className="inline-block bg-white/10 border border-white/20 px-3 py-1 rounded-full"
+      >
+        {filter}
+      </span>
+    ))}
+
+    {selectedFilters.length > 4 && (
+      <span
+        className="inline-block bg-white/10 border border-white/20 px-3 py-1 rounded-full"
+        title={selectedFilters.slice(3).join(", ")}
+      >
+        +{selectedFilters.length - 4}
+      </span>
+    )}
+  </div>
+) : (
+  <p className="mt-4 text-sm text-gray-400">No filters selected</p>
+)}
+
         </div>
       </div>
 
